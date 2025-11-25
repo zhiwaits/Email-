@@ -1,10 +1,11 @@
 from typing import List, Dict, Any
-from modules.auth import AuthValidator
-from modules.url import URLAnalyzer
-from modules.content import ContentAnalyzer
+from modules.auth_enhanced import EnhancedAuthValidator
+from modules.url_enhanced import EnhancedURLAnalyzer
+from modules.content_enhanced import EnhancedContentAnalyzer
 from modules.attachments import AttachmentAnalyzer
 from modules.sender import SenderAnalyzer
 from modules.spam_detector import SpamDetector
+from modules.anomaly_detector import AnomalyDetector
 
 class ScoringEngine:
     def __init__(self):
@@ -61,13 +62,15 @@ class EmailScorer:
     
     @classmethod
     def calculate_phishing_score(cls, email_data: Dict) -> Dict:
-        """Run all phishing modules and return aggregate score"""
+        """Run all phishing modules (enhanced version) and return aggregate score"""
         
-        auth_validator = AuthValidator()
-        url_analyzer = URLAnalyzer()
-        content_analyzer = ContentAnalyzer()
+        # Use enhanced modules for better detection
+        auth_validator = EnhancedAuthValidator()
+        url_analyzer = EnhancedURLAnalyzer()
+        content_analyzer = EnhancedContentAnalyzer()
         attachment_analyzer = AttachmentAnalyzer()
         sender_analyzer = SenderAnalyzer()
+        anomaly_detector = AnomalyDetector()
         
         # Run all modules
         results = {
@@ -82,7 +85,8 @@ class EmailScorer:
                 email_data.get("body", "")
             ),
             "attachments": attachment_analyzer.analyze(email_data.get("attachments", [])),
-            "sender": sender_analyzer.analyze(email_data.get("from", ""))
+            "sender": sender_analyzer.analyze(email_data.get("from", "")),
+            "anomalies": anomaly_detector.analyze(email_data)
         }
         
         # Aggregate score
@@ -95,16 +99,16 @@ class EmailScorer:
             findings = result.get("findings", [])
             all_findings.extend(findings)
         
-        # Normalize to 0-100
+        # Normalize to 0-100 (increased max possible from enhanced modules)
         total_score = min(int(total_score), cls.MAX_PHISHING_SCORE)
         
-        # Determine level
+        # Determine level with improved thresholds
         level = cls._get_phishing_level(total_score)
         
         return {
             "score": total_score,
             "level": level,
-            "findings": all_findings[:15],
+            "findings": all_findings[:20],  # Increased from 15 to show more findings
             "modules": results
         }
     

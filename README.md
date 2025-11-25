@@ -22,59 +22,6 @@ VAMS is a comprehensive email security analysis tool designed specifically for l
 ✅ **Multiple Input Methods** - Upload .eml files, paste content, or test samples  
 ✅ **Detailed Findings** - Specific indicators for each detected threat  
 
----
-
-## 📋 Email Security Guidance
-
-### RED FLAGS: When to Block or Verify
-
-#### **1. Sender Verification Issues** 🚨
-- Email claims to be from CEO/Finance but comes from external domain
-- Slight domain variations (`lawfirm-usa.com` vs `lawfirm.com`)
-- Free email domains (Gmail, Yahoo) for business correspondence
-- Suspicious/cheap TLDs (.tk, .ml, .ga, .cf)
-- Generic sender names (noreply, support, contact)
-- Display name spoofing ("CEO John Smith" from unrelated domain)
-
-#### **2. Urgency Tactics** ⏰
-- "URGENT: Immediate action required"
-- "Deal will expire if not completed today"
-- ALL CAPS with multiple exclamation marks
-- Artificial scarcity ("only 1 slot remaining")
-- Time pressure on sensitive actions (wire transfers, account changes)
-
-#### **3. Financial Requests** 💰
-- Wire transfer requests (especially unusual amounts)
-- Banking details requested
-- Payment to new/unknown vendors
-- Invoice/receipt requests from unverified sources
-- Requests for prepayment, advance fees, or "processing fees"
-- Requests for gift cards or cryptocurrency
-
-#### **4. Suspicious Links & Attachments** 🔗
-- Link text differs from actual URL destination
-- Shortened URLs (bit.ly, tinyurl) in unsolicited emails
-- IP addresses instead of domain names (192.168.1.1)
-- Suspicious file extensions:
-  - Executables: `.exe`, `.scr`, `.vbs`, `.bat`, `.cmd`
-  - Office with macros: `.docm`, `.xlsm`, `.pptm`
-  - Archives: `.zip`, `.rar` with unknown contents
-
-#### **5. Authentication Failures** ✓
-- SPF/DKIM/DMARC failures (visible in email headers)
-- Gmail/Outlook warnings: "Check this message" or authentication fail
-- No `Reply-To` header (spam indicator)
-- Inconsistent sender information
-
-#### **6. Generic or Unusual Content** 📝
-- "Dear Beneficiary" instead of your name
-- Poor spelling/grammar from established organizations
-- Unusual business requests unrelated to your firm's practice
-- Copy-paste spam language patterns
-- High density of financial/urgency keywords
-- Repetitive text patterns
-
----
 
 ## ⚡ What to Do When You Suspect Malicious Email
 
@@ -165,59 +112,6 @@ VAMS is a comprehensive email security analysis tool designed specifically for l
 - Detailed findings visualization
 - Multiple input methods
 
----
-
-## 📊 Analysis Examples
-
-### ✅ Legitimate Email
-```
-From: partner@lawfirm.com
-To: attorney@lawfirm.com
-Subject: Discovery Documents - Case #2025-001
-
-Hi Sarah,
-
-I've attached the discovery documents for the Anderson case. 
-Please review at your convenience.
-
-Best regards,
-John Smith
-Senior Partner
-```
-**Result**: ✅ LEGITIMATE (Score: 5/100)
-
-### ⚠️ Suspicious Phishing
-```
-From: CEO <ceo@lawfirm-usa.com>
-To: accounting@lawfirm.com
-Subject: URGENT: Wire Transfer Required Today
-
-IMMEDIATE ACTION NEEDED!
-
-Wire $250,000 to: Bank xyz, Account 987654321
-
-Respond within 1 hour.
-```
-**Result**: 🚨 MALICIOUS PHISHING (Score: 78/100)
-
-### 📧 Marketing Spam
-```
-From: newsletter@promotions.tk
-To: staff@lawfirm.com
-Subject: EXCLUSIVE OFFER - Save 50% TODAY!!!
-
-Dear Valued Customer,
-
-Don't miss out on our LIMITED TIME offer!!!
-
-Click here now: bit.ly/deals123
-
-Unsubscribe
-```
-**Result**: 📬 LIKELY SPAM (Score: 85/100)
-
----
-
 ## 🚀 Installation & Setup
 
 ### Requirements
@@ -272,12 +166,3 @@ Frontend runs on `http://localhost:5173`
 
 ---
 
-## 📞 Support & Feedback
-
-For questions or improvements, contact your IT/Security team.
-
----
-
-**Last Updated**: November 25, 2025  
-**Version**: 1.0  
-**Status**: Production Ready 

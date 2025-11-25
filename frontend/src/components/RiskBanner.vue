@@ -1,69 +1,75 @@
 <template>
   <div 
-    class="rounded-xl md:rounded-2xl p-4 md:p-8 border-2 shadow-2xl"
+    class="rounded-2xl p-6 md:p-8 border-2 shadow-2xl backdrop-blur-xl transition-all duration-300"
     :class="riskClasses"
   >
     <!-- Header -->
-    <div class="flex flex-col md:flex-row items-start justify-between gap-4 mb-4 md:mb-6">
-      <div class="flex items-start gap-3 md:gap-4 flex-1">
+    <div class="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-6 mb-6 md:mb-8">
+      <div class="flex items-start gap-4 md:gap-6 flex-1">
         <div class="text-4xl md:text-5xl flex-shrink-0">{{ riskIcon }}</div>
         <div class="min-w-0">
-          <h2 class="text-2xl md:text-3xl font-bold break-words" :class="textColorClass">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold break-words leading-tight" :class="textColorClass">
             {{ classification }}
           </h2>
-          <p class="text-xs md:text-sm mt-1" :class="subtextColorClass">
+          <p class="text-sm md:text-base mt-2 md:mt-3 leading-relaxed" :class="subtextColorClass">
             {{ classificationDescription }}
           </p>
         </div>
       </div>
-      <div class="text-right flex-shrink-0">
-        <div class="text-3xl md:text-4xl font-bold" :class="textColorClass">
+      <div class="text-right flex-shrink-0 bg-white/10 backdrop-blur rounded-2xl p-4 md:p-6">
+        <div class="text-3xl md:text-4xl lg:text-5xl font-bold" :class="textColorClass">
           {{ Math.max(spamScore, score) }}
         </div>
-        <p class="text-xs uppercase tracking-wide font-semibold mt-1" :class="subtextColorClass">
+        <p class="text-xs md:text-sm uppercase tracking-widest font-bold mt-2 opacity-80" :class="subtextColorClass">
           Risk Score
         </p>
       </div>
     </div>
 
-    <!-- Score Breakdown -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-4 md:mb-6">
-      <!-- Phishing Score -->
-      <div class="bg-white/10 backdrop-blur rounded-lg p-2 md:p-3">
-        <p class="text-xs font-medium uppercase tracking-wider text-white/70">Phishing</p>
-        <div class="flex items-baseline gap-2 mt-1 md:mt-2">
-          <span class="text-xl md:text-2xl font-bold" :class="getPhishingColor">{{ score }}</span>
-          <span class="text-xs" :class="getPhishingLevel">{{ phishingLevel }}</span>
+    <!-- Progress Bars -->
+    <div class="space-y-4 md:space-y-6 mb-6 md:mb-8">
+      <!-- Phishing Progress -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-xs md:text-sm font-bold uppercase tracking-wider text-white/80">Phishing Detection</p>
+          <span class="text-sm md:text-base font-bold" :class="getPhishingColor">{{ score }}/100</span>
+        </div>
+        <div class="w-full bg-slate-700/50 rounded-full h-3 md:h-4 overflow-hidden backdrop-blur">
+          <div 
+            class="h-full rounded-full transition-all duration-500 bg-gradient-to-r"
+            :class="score >= 70 ? 'from-red-500 to-red-600' : score >= 50 ? 'from-orange-500 to-orange-600' : score >= 30 ? 'from-yellow-500 to-yellow-600' : 'from-green-500 to-green-600'"
+            :style="`width: ${score}%`"
+          ></div>
         </div>
       </div>
 
-      <!-- Spam Score -->
-      <div class="bg-white/10 backdrop-blur rounded-lg p-2 md:p-3">
-        <p class="text-xs font-medium uppercase tracking-wider text-white/70">Spam</p>
-        <div class="flex items-baseline gap-2 mt-1 md:mt-2">
-          <span class="text-xl md:text-2xl font-bold" :class="getSpamColor">{{ spamScore }}</span>
-          <span class="text-xs" :class="getSpamLevel">{{ spamLevel }}</span>
+      <!-- Spam Progress -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-xs md:text-sm font-bold uppercase tracking-wider text-white/80">Spam Detection</p>
+          <span class="text-sm md:text-base font-bold" :class="getSpamColor">{{ spamScore }}/100</span>
         </div>
-      </div>
-
-      <!-- Classification -->
-      <div class="bg-white/10 backdrop-blur rounded-lg p-2 md:p-3 md:col-span-2">
-        <p class="text-xs font-medium uppercase tracking-wider text-white/70">Classification</p>
-        <p class="text-xs md:text-sm font-semibold text-white mt-1 md:mt-2 break-words">{{ classification }}</p>
+        <div class="w-full bg-slate-700/50 rounded-full h-3 md:h-4 overflow-hidden backdrop-blur">
+          <div 
+            class="h-full rounded-full transition-all duration-500 bg-gradient-to-r"
+            :class="spamScore >= 80 ? 'from-red-500 to-red-600' : spamScore >= 50 ? 'from-orange-500 to-orange-600' : spamScore >= 30 ? 'from-yellow-500 to-yellow-600' : 'from-green-500 to-green-600'"
+            :style="`width: ${spamScore}%`"
+          ></div>
+        </div>
       </div>
     </div>
 
     <!-- Recommendation Box -->
-    <div v-if="recommendation" class="bg-white/10 backdrop-blur border border-white/20 rounded-lg p-3 md:p-4 mb-3 md:mb-4">
-      <div class="flex flex-col md:flex-row items-start gap-3 md:gap-3">
-        <span class="text-2xl md:text-3xl flex-shrink-0 mt-0 md:mt-1">{{ recommendationIcon }}</span>
+    <div v-if="recommendation" class="bg-gradient-to-br border rounded-2xl p-4 md:p-6 mb-6 md:mb-8 backdrop-blur-xl" :class="recommendationBoxClass">
+      <div class="flex flex-col md:flex-row items-start gap-4 md:gap-5">
+        <span class="text-4xl md:text-5xl flex-shrink-0">{{ recommendationIcon }}</span>
         <div class="flex-1 min-w-0">
-          <p class="font-semibold text-white break-words">{{ recommendation.action }}</p>
-          <p class="text-xs md:text-sm text-white/80 mt-1">{{ recommendation.reason }}</p>
+          <p class="font-bold text-lg md:text-xl text-white mb-1.5">{{ recommendation.action }}</p>
+          <p class="text-sm md:text-base text-white/80 leading-relaxed">{{ recommendation.reason }}</p>
         </div>
-        <div class="text-right flex-shrink-0">
+        <div class="flex-shrink-0">
           <span 
-            class="inline-block px-2 md:px-3 py-1 rounded-full text-xs font-bold uppercase whitespace-nowrap"
+            class="inline-block px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider whitespace-nowrap"
             :class="recommendationBadgeClass"
           >
             {{ recommendation.level }}
@@ -73,21 +79,21 @@
     </div>
 
     <!-- Action Buttons -->
-    <div class="flex gap-2 flex-wrap">
-      <button v-if="recommendation && recommendation.action === 'BLOCK'" @click="handleBlock" class="px-3 md:px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors text-sm cursor-pointer">
+    <div class="flex flex-wrap gap-2 md:gap-3">
+      <button v-if="recommendation && recommendation.action === 'BLOCK'" @click="handleBlock" class="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold rounded-xl transition-all transform hover:scale-105 text-sm md:text-base shadow-lg hover:shadow-red-500/30">
         🚫 Block
       </button>
-      <button v-if="recommendation && recommendation.action === 'VERIFY'" @click="handleVerify" class="px-3 md:px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-lg transition-colors text-sm cursor-pointer">
+      <button v-if="recommendation && recommendation.action === 'VERIFY'" @click="handleVerify" class="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-bold rounded-xl transition-all transform hover:scale-105 text-sm md:text-base shadow-lg hover:shadow-yellow-500/30">
         ⚠️ Verify
       </button>
-      <button v-if="recommendation && recommendation.action === 'QUARANTINE'" @click="handleQuarantine" class="px-3 md:px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors text-sm cursor-pointer">
+      <button v-if="recommendation && recommendation.action === 'QUARANTINE'" @click="handleQuarantine" class="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold rounded-xl transition-all transform hover:scale-105 text-sm md:text-base shadow-lg hover:shadow-orange-500/30">
         📬 Quarantine
       </button>
-      <button v-if="recommendation && recommendation.action === 'REVIEW'" @click="handleReview" class="px-3 md:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm cursor-pointer">
+      <button v-if="recommendation && recommendation.action === 'REVIEW'" @click="handleReview" class="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold rounded-xl transition-all transform hover:scale-105 text-sm md:text-base shadow-lg hover:shadow-green-500/30">
         🔍 Review
       </button>
-      <button @click="handleCopy" class="px-3 md:px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium rounded-lg transition-colors text-sm cursor-pointer">
-        📋 Copy
+      <button @click="handleCopy" class="px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-slate-100 font-bold rounded-xl transition-all transform hover:scale-105 text-sm md:text-base shadow-lg">
+        📋 {{ copyMessage || 'Copy Report' }}
       </button>
     </div>
   </div>
