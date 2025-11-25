@@ -1,0 +1,45 @@
+From: partner@actuallaw.com
+To: attorney@lawfirm.com
+Subject: Contract Review for Henderson vs. Smith
+Date: Mon, 25 Nov 2024 14:30:00 +0800
+Message-ID: <legitimate.001@actuallaw.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="boundary-123"
+
+--boundary-123
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Attorney Johnson,
+
+I wanted to follow up on the Henderson v. Smith contract we discussed in our meeting last week. I've reviewed the settlement terms and have a few questions about the liability clause on page 7.
+
+Could you schedule a call this week to discuss? I'm available Tuesday or Wednesday after 2 PM.
+
+The document is attached for your reference. Let me know your availability.
+
+Best regards,
+Robert Chen
+Senior Partner
+Actual Law Associates
+(555) 123-4567
+partner@actuallaw.com
+
+--boundary-123
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+  <body>
+    <p>Hi Attorney Johnson,</p>
+    <p>I wanted to follow up on the Henderson v. Smith contract we discussed in our meeting last week. I've reviewed the settlement terms and have a few questions about the liability clause on page 7.</p>
+    <p>Could you schedule a call this week to discuss? I'm available Tuesday or Wednesday after 2 PM.</p>
+    <p>The document is attached for your reference. Let me know your availability.</p>
+    <p>Best regards,<br>
+    Robert Chen<br>
+    Senior Partner<br>
+    Actual Law Associates<br>
+    (555) 123-4567<br>
+    partner@actuallaw.com</p>
+  </body>
+</html>
+
+--boundary-123--

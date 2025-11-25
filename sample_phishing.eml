@@ -1,0 +1,17 @@
+From: "CEO John Smith" <attacker@evil-domain.tk>
+To: finance@lawfirm.com
+Subject: URGENT: Immediate Wire Transfer Required
+Date: Mon, 24 Nov 2025 09:00:00 -0500
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+Authentication-Results: mx.google.com; spf=fail (google.com: domain of attacker@evil-domain.tk does not designate 1.2.3.4 as permitted sender); dkim=fail; dmarc=fail
+
+<html>
+<body>
+<p>Dear Beneficiary,</p>
+<p>I need you to process an <b>URGENT</b> wire transfer for the acquisition deal immediately.</p>
+<p>Please click here to verify the details: <a href="http://login-secure-bank.tk/verify">http://secure-bank.com/login</a></p>
+<p>This action is required immediately to avoid deal termination.</p>
+<p>Regards,<br>John Smith<br>CEO</p>
+</body>
+</html>
